@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2018 at 04:49 PM
+-- Generation Time: Dec 07, 2018 at 03:28 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
 `category_id` int(11) NOT NULL,
   `categry_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `categories`
@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 INSERT INTO `categories` (`category_id`, `categry_name`) VALUES
 (1, 'Áo Khoác Nữ'),
 (2, 'Áo Len'),
-(4, 'Áo Sơ Mi');
+(4, 'Áo Sơ Mi'),
+(5, 'Áo Ngắn');
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `order` (
   `phone` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `order_time` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `order`
@@ -106,7 +107,11 @@ CREATE TABLE IF NOT EXISTS `order` (
 
 INSERT INTO `order` (`id`, `user_id`, `firstname`, `lastname`, `address`, `phone`, `email`, `order_time`) VALUES
 (42, 0, 'le dinh', 'phung', 'Hue, Hue', '0978531401', 'phungle.29.11@gmail.com', '2018-11-19 10:21:51'),
-(43, 0, 'le dinh', 'phung', 'Hue, Hue', '0978531401', 'phungle.29.11@gmail.com', '2018-11-19 10:31:55');
+(43, 0, 'le dinh', 'phung', 'Hue, Hue', '0978531401', 'phungle.29.11@gmail.com', '2018-11-19 10:31:55'),
+(44, 0, 'le dinh', 'phung', 'Hue, Hue', '', '', '2018-11-20 03:54:40'),
+(45, 0, 'le dinh tam', 'phung', 'Hue, Hue', '0978531401', 'phungle.29.11@gmail.com', '2018-11-20 03:55:37'),
+(46, 0, 'le dinh', 'phung', 'Hue, Hue', '0978531401', 'phungle.29.11@gmail.com', '2018-12-01 08:53:04'),
+(47, 0, 'le dinh', 'phung', 'Hue, Hue', '123123', 'ldtamphung97@gmail.com', '2018-12-07 14:59:41');
 
 -- --------------------------------------------------------
 
@@ -120,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `order_product` (
   `price` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_idpk` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `order_product`
@@ -130,7 +135,14 @@ INSERT INTO `order_product` (`id`, `quantity`, `price`, `order_id`, `product_idp
 (53, 1, 1290000, 42, 5),
 (54, 1, 1290000, 42, 6),
 (55, 1, 1290000, 42, 7),
-(56, 6, 1290000, 43, 5);
+(56, 6, 1290000, 43, 5),
+(57, 6, 1290000, 44, 5),
+(58, 4, 1290000, 44, 6),
+(59, 4, 1290000, 44, 7),
+(60, 4, 1290000, 45, 7),
+(61, 1, 1290000, 46, 5),
+(62, 3, 1290000, 47, 5),
+(63, 1, 1290000, 47, 7);
 
 -- --------------------------------------------------------
 
@@ -180,20 +192,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_author` varchar(10) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_password`, `user_fullname`, `user_birthday`, `user_gender`, `user_phone`, `user_email`, `user_address`, `user_author`) VALUES
-(1, 'le dinh', '123', 'ldtamphung', '2018-11-01', 0, '0978531401', 'ldtamphung97@gmail.com', 'hue', 'user'),
-(2, 'ldtamphung', '123', 'ldtamphung', '2018-11-01', 0, '0197116112', 'ldtamphung97@gmail.com', 'hue', 'admin'),
-(5, 'phungle', '', 'le dinh phung', '2018-10-30', 1, '01421336566', 'ldtamphung97@gmail.com', '', 'admin'),
-(7, 'phungle', '', 'le dinh phung', '2018-11-06', 0, '01421336566', 'ldtamphung97@gmail.com', '', 'user'),
+(1, 'le dinh', '123', 'ldtamphung', '2018-11-01', 0, '0978531401', 'ldtamphung97@gmail.com', 'hue', 'admin'),
+(2, 'ldtamphung', '123', 'ldtamphung', '2018-11-01', 0, '0197116112', 'ldtamphung97@gmail.com', 'hue', 'user'),
 (8, 'phungle', '123', 'le dinh phung', '2018-11-09', 0, '01421336566', 'ldtamphung97@gmail.com', '', 'user'),
 (9, 'phungle', '123', 'le dinh phung', '2018-11-05', 0, '01421336566', 'ldtamphung97@gmail.com', 'Hue, Hue', 'user'),
-(10, 'phungle', '123', 'le dinh phung', '2018-11-07', 0, '01421336566', 'ldtamphung97@gmail.com', 'Hue, Hue', 'user');
+(10, 'phungle', '123', 'le dinh phung', '2018-11-07', 0, '01421336566', 'ldtamphung97@gmail.com', 'Hue, Hue', 'user'),
+(11, 'phungle', '321', 'LeDinhTamPhung', '2018-12-12', 1, '01421336566', 'ldtamphung97@gmail.com', 'Hue, Hue', 'user');
 
 --
 -- Indexes for dumped tables
@@ -249,7 +260,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `deltail_category`
 --
@@ -264,12 +275,12 @@ MODIFY `detail_product_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT for table `products`
 --
@@ -279,7 +290,7 @@ MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
