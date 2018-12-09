@@ -113,30 +113,26 @@ if(isset($_SESSION['error']))
                     <ul>
                         <li><a href="#">Shop</a>
                             <div class="megamenu">
+                             <?php
+
+
+                                         $a=new c_category();
+                                         $array=$a->getindex();
+
+                                         foreach ($array as $key) {
+                                             ?>
                                 <ul class="single-mega cn-col-4">
-                                    <li class="title">Women's Collection</li>
-                                    <li><a href="shop.html">Dresses</a></li>
-                                    <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Rompers</a></li>
-                                    <li><a href="shop.html">Bras &amp; Panties</a></li>
+                                    <li class="title"><?php echo $key['categry_name'];?></li>
+                                    <?php
+                                                    $array1=$a->getcateid($key['category_id']);
+                                                    foreach ($array1 as $key1) {
+                                                # code...
+
+                                                        ?>
+                                     <li><a href="shop.php?id=<?php echo $key1['deltail_category_id'];?>"><?php echo $key1['deltail_category_name'];?></a></li>
+                                    <?php } ?>
                                 </ul>
-                                <ul class="single-mega cn-col-4">
-                                    <li class="title">Men's Collection</li>
-                                    <li><a href="shop.html">T-Shirts</a></li>
-                                    <li><a href="shop.html">Polo</a></li>
-                                    <li><a href="shop.html">Shirts</a></li>
-                                    <li><a href="shop.html">Jackets</a></li>
-                                    <li><a href="shop.html">Trench</a></li>
-                                </ul>
-                                <ul class="single-mega cn-col-4">
-                                    <li class="title">Kid's Collection</li>
-                                    <li><a href="shop.html">Dresses</a></li>
-                                    <li><a href="shop.html">Shirts</a></li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Jackets</a></li>
-                                    <li><a href="shop.html">Trench</a></li>
-                                </ul>
+                               <?php  } ?>
                                 <div class="single-mega cn-col-4">
                                     <img src="img/bg-img/bg-6.jpg" alt="">
                                 </div>
@@ -145,9 +141,8 @@ if(isset($_SESSION['error']))
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="single-product-details.html">Product Details</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="index.php">Shop</a></li>
+                                
                                 <li><a href="blog.html">Blog</a></li>
                                 <li><a href="single-blog.html">Single Blog</a></li>
                                 <li><a href="regular-page.html">Regular Page</a></li>
@@ -242,12 +237,12 @@ if(isset($_SESSION['error']))
                                 <img src="<?php echo $key['product_image'];?>" class="cart-thumb" alt="">
                                 <!-- Cart Item Desc -->
                                 <div class="cart-item-desc">
-                                  <a href="shop.php?delete=<?php echo $key['product_id'];?>"><span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span></a>
-                                  <span class="badge">Mango</span>
+                                  <a href="shop.php?delete=<?php echo $key['product_id'];?>"><span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i>Delete</span></a>
+                                  <span class="badge"></span>
                                   <h6><?php echo $key['product_name'];?></h6>
                                   <p class="size">Size: S</p>
                                   <p class="color">Số lượng: <input style="width: 60%;float: right;" name="sl_<?php echo $key['product_id'];?>" type="number" class="form-control" id="sl_<?php echo $key['product_id'];?>" min="0" value="<?php echo $key1['quantity']?>"></p>
-                                  <p class="price" > Gía:&nbsp;<span id="<?php echo $key['product_price'];?>" ><?php echo $key['product_price'];?></span>đ</p>
+                                  <p class="price" > Gía:&nbsp;<span id="<?php echo $key['product_price'];?>" ><?php echo number_format($key['product_price'],0,',',',');?></span>đ</p>
 
                                   <a href="javascript:void(0)" onclick="updateItem(<?php echo $key['product_id']; ?>)">Update</a>
                               </div>
@@ -295,7 +290,7 @@ if(isset($_SESSION['error']))
                             {
                                 $tong=0;
                             }
-                            echo $tong;
+                            echo number_format($tong,0,',',',');
 
 
 
@@ -499,7 +494,7 @@ if(isset($_SESSION['error']))
                                                     <a href="single-product-details.php?id=<?php echo $key['product_id'];?>">
                                                         <h6><?php echo $key['product_name'];?></h6>
                                                     </a>
-                                                    <p class="product-price"><span class="old-price">$75.00</span> <?php echo $key['product_price'];?></p>
+                                                    <p class="product-price"><span class="old-price">$75.00</span> <?php echo number_format($key['product_price'],0,',',',');?> đ</p>
 
                                                     <!-- Hover Content -->
                                                     <div class="hover-content">
@@ -588,7 +583,7 @@ if(isset($_SESSION['error']))
                     <!-- Footer Menu -->
                     <div class="footer_menu">
                         <ul>
-                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="shop.php">Shop</a></li>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>

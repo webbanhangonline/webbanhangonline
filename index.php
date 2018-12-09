@@ -27,7 +27,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                <a class="nav-brand" href="index.php"><img src="img/core-img/logo.png" alt=""></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -43,30 +43,26 @@
                         <ul>
                             <li><a href="#">Shop</a>
                                 <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Women's Collection</li>
-                                        <li><a href="shop.php">Dresses</a></li>
-                                        <li><a href="shop.php">Blouses &amp; Shirts</a></li>
-                                        <li><a href="shop.php">T-shirts</a></li>
-                                        <li><a href="shop.php">Rompers</a></li>
-                                        <li><a href="shop.php">Bras &amp; Panties</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Men's Collection</li>
-                                        <li><a href="shop.php">T-Shirts</a></li>
-                                        <li><a href="shop.php">Polo</a></li>
-                                        <li><a href="shop.php">Shirts</a></li>
-                                        <li><a href="shop.php">Jackets</a></li>
-                                        <li><a href="shop.php">Trench</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Kid's Collection</li>
-                                        <li><a href="shop.php">Dresses</a></li>
-                                        <li><a href="shop.php">Shirts</a></li>
-                                        <li><a href="shop.php">T-shirts</a></li>
-                                        <li><a href="shop.php">Jackets</a></li>
-                                        <li><a href="shop.php">Trench</a></li>
-                                    </ul>
+                                   <?php
+
+                                          require('./controller/c_category.php');
+                                         $a=new c_category();
+                                         $array=$a->getindex();
+
+                                         foreach ($array as $key) {
+                                             ?>
+                                <ul class="single-mega cn-col-4">
+                                    <li class="title"><?php echo $key['categry_name'];?></li>
+                                    <?php
+                                                    $array1=$a->getcateid($key['category_id']);
+                                                    foreach ($array1 as $key1) {
+                                                # code...
+
+                                                        ?>
+                                     <li><a href="shop.php?id=<?php echo $key1['deltail_category_id'];?>"><?php echo $key1['deltail_category_name'];?></a></li>
+                                    <?php } ?>
+                                </ul>
+                               <?php  } ?>
                                     <div class="single-mega cn-col-4">
                                         <img src="img/bg-img/bg-6.jpg" alt="">
                                     </div>
@@ -74,10 +70,9 @@
                             </li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="index.php">Home</a></li>
                                     <li><a href="shop.php">Shop</a></li>
-                                    <li><a href="single-product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    
                                     <li><a href="blog.html">Blog</a></li>
                                     <li><a href="single-blog.html">Single Blog</a></li>
                                     <li><a href="regular-page.html">Regular Page</a></li>
